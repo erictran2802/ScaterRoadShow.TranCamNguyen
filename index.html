@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Scaters Raptor Roadshow: Street-style skateboard tour across the UK during Spring break." />
+  <meta name="description" content="Scaters Raptor Roadshow: Street-style skateboard tour across the UK in February 2026." />
   <title>Scaters Raptor Roadshow | STREET MODE ACTIVATED</title>
 
   <!-- Fonts (street) -->
@@ -621,6 +621,85 @@
       accent-color: #000;
     }
 
+    /* --- Task 1 additions: Offer + WP/UX notes --- */
+    .promo-strip{
+      border:1px solid #2d2d2d;
+      background: rgba(16,16,16,.70);
+      padding: 18px 18px 16px;
+      margin-top: 18px;
+      position:relative;
+      overflow:hidden;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+    .promo-strip:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(circle at 20% 20%, rgba(204,255,0,.14), transparent 45%),
+                  radial-gradient(circle at 80% 30%, rgba(0,255,255,.10), transparent 45%),
+                  radial-gradient(circle at 50% 90%, rgba(255,0,153,.10), transparent 55%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .promo-strip > *{position:relative; z-index:1;}
+    .kicker{
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .9px;
+      color:#9a9a9a;
+      margin-bottom: 8px;
+    }
+    .bullets{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color:#c7c7c7;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+    .bullets li{margin: 6px 0;}
+    .pill{
+      display:inline-block;
+      padding: 6px 10px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.04);
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      font-weight: 950;
+      font-size: 11px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .note-box{
+      border-left: 3px solid var(--cyan);
+      padding-left: 14px;
+      margin-top: 12px;
+      color:#bdbdbd;
+      font-weight: 800;
+      line-height: 1.55;
+    }
+    .fineprint{
+      color:#8f8f8f;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+    .dark-panel{
+      border:1px solid #2d2d2d;
+      background: rgba(16,16,16,.60);
+      padding: 22px;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+    .cols2-dark{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (max-width: 900px){
+      .cols2-dark{grid-template-columns: 1fr;}
+    }
+
   </style>
 </head>
 
@@ -701,6 +780,58 @@
       </div>
     </section>
 
+
+    <!-- PROMOTIONAL OFFER (Task 1) -->
+    <section id="offer" class="section reveal" aria-label="Promotional offer details">
+      <h2 style="text-align:center">ROADSHOW <span class="marker">PROMO</span> OFFER</h2>
+
+      <div class="promo-strip" aria-label="Offer summary">
+        <div class="kicker">What’s the offer?</div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px">
+          <span class="pill">FREE RAPTOR DEMO SLOT</span>
+          <span class="pill">INVITE-ONLY EVENING DRAW</span>
+          <span class="pill">NO E-COMMERCE</span>
+        </div>
+
+        <ul class="bullets">
+          <li><b>Reserve a demo slot</b> for the new Raptor board in your chosen city (limited capacity).</li>
+          <li><b>Enter the evening events draw (optional)</b> for a meal with free drinks + talk with Skateboard England + a special guest rider.</li>
+          <li><b>Retail-friendly:</b> this page promotes the tour only. Purchases happen via retail partners.</li>
+        </ul>
+
+        <div class="note-box">
+          <b>How selection works:</b> evening event guests are chosen from those who sign up for the email campaign or enter the website draw.
+        </div>
+
+        <div class="fineprint">
+          Dates are confirmed below. Exact meeting point & check‑in time will be emailed after you sign up.
+        </div>
+      </div>
+
+      <div class="grid3" aria-label="How it works">
+        <div class="card">
+          <span class="num">STEP 1</span>
+          <h3>SIGN UP</h3>
+          <p>Leave your name + email, pick a city, and tell us your level. We’ll send confirmed details.</p>
+        </div>
+
+        <div class="card">
+          <span class="num" style="color:var(--hot)">STEP 2</span>
+          <h3>GET CONFIRMED</h3>
+          <p>We’ll email your exact meeting point, check‑in time, and what to bring.</p>
+        </div>
+
+        <div class="card">
+          <span class="num" style="color:var(--lime)">STEP 3</span>
+          <h3>OPTIONAL DRAW</h3>
+          <p>Want the evening add-on? Enter the draw with extra details — invite-only, selected fairly.</p>
+          <p style="margin-top:12px">
+            <a class="btn" href="evening-draw.html">ENTER EVENING DRAW</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY RAPTOR -->
     <section id="raptor" class="section reveal" aria-labelledby="raptor-title">
       <h2 id="raptor-title" style="text-align:center">
@@ -734,33 +865,33 @@
         TOUR SCHEDULE
       </h2>
       <p style="margin-top:8px; color:#bdbdbd">
-        Draft schedule (subject to venue availability). Sign up to receive confirmed details.
+        Confirmed February 2026 dates. Exact meeting point & check‑in time will be emailed after sign‑up.
       </p>
 
       <div class="roadshow-wrap">
         <div class="schedule-box" role="table" aria-label="Roadshow schedule list">
           <div class="row" role="row">
-            <div class="date" role="cell">MON</div>
+            <div class="date" role="cell">07 FEB 2026</div>
             <div class="city" role="cell">LONDON <span>// Skatepark / Partner Venue</span></div>
             <div class="status" role="cell"><span class="tag live">HAPPENING</span></div>
           </div>
           <div class="row" role="row">
-            <div class="date" role="cell">TUE</div>
+            <div class="date" role="cell">10 FEB 2026</div>
             <div class="city" role="cell">MANCHESTER <span>// Skatepark</span></div>
             <div class="status" role="cell"><span class="tag">OPEN</span></div>
           </div>
           <div class="row" role="row">
-            <div class="date" role="cell">WED</div>
+            <div class="date" role="cell">14 FEB 2026</div>
             <div class="city" role="cell">BIRMINGHAM <span>// Retail Partner Facility</span></div>
             <div class="status" role="cell"><span class="tag">FILLING FAST</span></div>
           </div>
           <div class="row" role="row">
-            <div class="date" role="cell">THU</div>
+            <div class="date" role="cell">18 FEB 2026</div>
             <div class="city" role="cell">LEEDS <span>// Skatepark</span></div>
             <div class="status" role="cell"><span class="tag" style="background:#222; color:#9a9a9a; border-color:#222">WAITLIST</span></div>
           </div>
           <div class="row" role="row">
-            <div class="date" role="cell">FRI</div>
+            <div class="date" role="cell">21 FEB 2026</div>
             <div class="city" role="cell">BRISTOL <span>// Skatepark</span></div>
             <div class="status" role="cell"><span class="tag">OPEN</span></div>
           </div>
@@ -846,7 +977,7 @@
           <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
 
           <div class="form-note">
-            Tip: The evening events are invite-only. If you want to enter the draw, use the optional button above.
+            Note: Evening events are invite-only. If you’d like to enter, use the optional button above.
           </div>
           </form>
       </div>
@@ -863,8 +994,8 @@
         </div>
         <div class="card">
           <span class="num" style="color:var(--hot)">Q2.</span>
-          <h3>IS THE SCHEDULE FINAL?</h3>
-          <p>Not yet. It’s a draft. Sign up to receive the confirmed dates and venues.</p>
+          <h3>WHERE DO I SHOW UP?</h3>
+          <p>Dates are listed on the page. After sign‑up, we’ll email the exact meeting point and check‑in time for your city.</p>
         </div>
         <div class="card">
           <span class="num" style="color:var(--lime)">Q3.</span>
@@ -892,7 +1023,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // Quick sign-up form (demo)
+    // Quick sign-up form
     const form = document.getElementById('roadshowForm');
     const statusEl = document.getElementById('formStatus');
 
@@ -916,7 +1047,7 @@
         }
       }
 
-      setStatus('Thanks! Your sign-up has been recorded (demo). We will email your city updates soon.');
+      setStatus('Thanks! You’re on the list. We’ll email your city details and check‑in info shortly.');
       form.reset();
     });
   </script>
