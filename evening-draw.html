@@ -161,21 +161,24 @@
 
     /* Form styling (light card on dark bg) */
     .form-section{
-      background: var(--ink);
+      background: transparent; /* background moved to ::before so text never gets clipped */
       color:#000;
-      /* Extra top/bottom padding so the diagonal edge never clips headings */
-      padding: 78px 34px 74px;
+      padding: 70px 34px;
       margin-top: 22px;
       position:relative;
-      /* Softer diagonal so it looks street-style but doesn't eat content */
-      clip-path: polygon(0 2.5%, 100% 0, 100% 100%, 0 97.5%);
     }
-
-    /* The first subsection sits at the top of the form card; remove the divider line */
-    .form-section .form-subhead:first-child{
-      margin-top: 0;
-      padding-top: 0;
-      border-top: none;
+    .form-section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: var(--ink);
+      /* angled panel like index.html, but only the background is clipped */
+      clip-path: polygon(0 2%, 100% 0, 100% 100%, 0 98%);
+      z-index:0;
+    }
+    .form-section > *{
+      position:relative;
+      z-index:1;
     }
     .field{display:grid; gap: 10px; margin-bottom: 10px}
     .field label{
@@ -254,24 +257,105 @@
       text-transform: uppercase;
       letter-spacing: 2px;
     }
+  
+    /* NEW: Agenda card (street style) */
+    .draw-block{max-width: var(--max); margin: 26px auto 0; padding: 0 18px;}
+    .agenda-card{
+      background: rgba(16,16,16,.65);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 22px 22px 18px;
+      position: relative;
+      clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+      box-shadow: 0 0 0 2px rgba(0,255,255,.10), 0 18px 40px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+    .agenda-card:before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      background: radial-gradient(circle at 30% 0%, rgba(204,255,0,.12), transparent 50%),
+                  radial-gradient(circle at 90% 40%, rgba(255,0,153,.10), transparent 55%);
+      opacity: .9;
+    }
+    .agenda-title{
+      font-family: var(--font-head);
+      font-size: 44px;
+      letter-spacing: .6px;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin: 0 0 12px;
+      position:relative;
+    }
+    .agenda-title:after{
+      content:"";
+      display:block;
+      width: 92px;
+      height: 4px;
+      margin-top: 10px;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(0,255,255,.35);
+    }
+    .agenda-list{
+      margin: 12px 0 14px 20px;
+      padding: 0;
+      color: var(--ink);
+      position:relative;
+    }
+    .agenda-list li{
+      margin: 8px 0;
+      color: #e6e6e6;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .agenda-note{
+      margin-top: 10px;
+      padding: 14px 14px 12px;
+      border-left: 3px solid var(--lime);
+      background: rgba(0,0,0,.25);
+      color:#cfcfcf;
+      font-weight: 800;
+      line-height: 1.55;
+      position:relative;
+    }
+    .agenda-note b{color:#fff}
+
+    .sr-only{
+      position:absolute !important;
+      width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
+
   </style>
 </head>
 
 <body>
   <header>
     <div class="nav">
-      <a href="index.html" class="brand" aria-label="Back to roadshow landing">
+      <a href="scaters_raptor_roadshow_landing.html" class="brand" aria-label="Back to roadshow landing">
         SCATERS<span class="dot">.</span>UK
         <span style="margin-left:10px"><small>RAPTOR ROADSHOW • EVENING DRAW</small></span>
       </a>
-      <a class="btn btn-primary" href="index.html">BACK TO ROADSHOW</a>
+      <a class="btn btn-primary" href="scaters_raptor_roadshow_landing.html">BACK TO ROADSHOW</a>
     </div>
   </header>
 
   <main>
     <h1>EVENING EVENTS <span class="marker">DRAW</span></h1>
-    <div class="lead">
-      As well as the general roadshow, which is open to all, there will also be a few evening events, including a meal with free drinks in a local hotel or restaurant, a talk from a representative of Skateboard England, and one member of the England skateboard team. Guests will be chosen from those that sign up for the email campaign or enter a draw on the website.
+    <div class="draw-block" aria-label="Evening events draw information">
+      <div class="agenda-card">
+        <div class="agenda-title">EVENING EVENTS AGENDA</div>
+        <ul class="agenda-list">
+          <li>Meal + free drinks in a local hotel or restaurant.</li>
+          <li>Talk from a representative of Skateboard England.</li>
+          <li>Special guest: one member of the England skateboard team.</li>
+        </ul>
+        <div class="agenda-note">
+          <b>Note:</b> These evening events are invite-only. Guests will be chosen from those who sign up for the email campaign
+          or enter the draw on the website. Please complete the form below so we can select guests fairly.
+        </div>
+      </div>
     </div>
 
     <section class="form-section" aria-label="Evening draw form">
@@ -637,6 +721,7 @@
       guardianName.required = false;
       ageEl.value = '';
     });
+
   </script>
 </body>
 </html>
